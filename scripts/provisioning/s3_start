@@ -68,9 +68,9 @@ def main():
       i = 0
       while i < 10:
         # Start S3 Server
+        time.sleep(60)
         os.system(f"sh /opt/seagate/cortx/s3/s3startsystem.sh -F {Fid} -P {fid_path} -C {s3config_path} -d")
         i += 1
-        time.sleep(60)
       pass
     elif args.service == 's3authserver':
       os.system("sh /opt/seagate/cortx/auth/startauth.sh /opt/seagate/cortx")
