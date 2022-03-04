@@ -118,7 +118,7 @@ fi
 pid_filename="/var/run/s3server.${fid}.pid"
 set -x
 
-s3server --s3pidfile "$pid_filename" \
+s3server --fake_authenticate true --fake_authorization true --disable_auth true --s3pidfile "$pid_filename" \
          --motrlocal "$local_ep" --motrha "$ha_ep" \
          --motrprofilefid "$profile_fid" --motrprocessfid "$process_fid" \
          --s3port "$s3port" --log_dir "$s3_log_dir" \
