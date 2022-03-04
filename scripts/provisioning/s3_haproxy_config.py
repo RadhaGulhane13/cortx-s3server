@@ -147,7 +147,7 @@ class S3HaproxyConfig:
   def get_config_with_defaults(self, key: str):
     confkey = self.local_confstore.get_config(key)
     if "machine-id" in confkey:
-      confkey = confkey.replace("machine-id", self.machine_id) 
+      confkey = confkey.replace("machine-id", self.machine_id)
     confkey_value = self.provisioner_confstore.get_config(confkey)
 
     if confkey_value is None:
@@ -168,7 +168,7 @@ class S3HaproxyConfig:
 
     if ("K8" == setup_type) :
       self.configure_haproxy_k8()
-    else : 
+    else :
       self.configure_haproxy_legacy()
       # ToDO
       # This code needs to be enable for mono lithic vm deployment
@@ -244,10 +244,10 @@ class S3HaproxyConfig:
 
     chroot      /var/lib/haproxy
     pidfile     /var/run/haproxy.pid
-    maxconn     13
+    maxconn     1000
     user        haproxy
     group       haproxy
-    nbproc      2
+    nbthread    16
     daemon
 
     # turn on stats unix socket and dynamic configuration reload
@@ -284,7 +284,7 @@ defaults
     timeout server          360s
     timeout http-keep-alive 10s
     timeout check           10s
-    maxconn                 3000
+    maxconn                 1000
 '''
     frontend_s3main_text = '''
 #----------------------------------------------------------------------
